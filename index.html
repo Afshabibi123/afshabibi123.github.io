@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Afsha Bibi | Portfolio</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0b1220;
+      --card:#0f1a2f;
+      --muted:#9fb0d0;
+      --text:#eaf0ff;
+      --brand:#35c6ff;
+      --brand2:#7c5cff;
+      --line:rgba(255,255,255,.10);
+      --shadow:0 12px 30px rgba(0,0,0,.35);
+      --radius:18px;
+      --max:1100px;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 500px at 10% 10%, rgba(53,198,255,.25), transparent 60%),
+        radial-gradient(900px 500px at 90% 20%, rgba(124,92,255,.22), transparent 60%),
+        linear-gradient(180deg, #070b14 0%, #0b1220 55%, #070b14 100%);
+      line-height:1.6;
+    }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+
+    /* Layout helpers */
+    .wrap{max-width:var(--max);margin:0 auto;padding:0 16px}
+    .section{padding:64px 0}
+    .grid{display:grid;gap:18px}
+    .card{
+      background:rgba(15,26,47,.78);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+    .pad{padding:20px}
+
+    /* Navbar */
+    .nav{
+      position:sticky;top:0;z-index:999;
+      background:rgba(7,11,20,.65);
+      backdrop-filter: blur(12px);
+      border-bottom:1px solid var(--line);
+    }
+    .nav-inner{
+      display:flex;align-items:center;justify-content:space-between;
+      height:64px;
+    }
+    .brand{
+      display:flex;gap:10px;align-items:center;font-weight:800;letter-spacing:.4px
+    }
+    .brand-badge{
+      width:36px;height:36px;border-radius:12px;
+      background: linear-gradient(135deg,var(--brand),var(--brand2));
+      display:grid;place-items:center;
+      box-shadow: 0 10px 20px rgba(53,198,255,.18);
+      flex:0 0 auto;
+    }
+    .brand-badge i{font-size:16px}
+    .nav-links{display:flex;gap:18px;align-items:center}
+    .nav-links a{
+      color:var(--muted);font-weight:600;font-size:14px;
+      padding:10px 10px;border-radius:12px;
+      transition:.2s ease;
+    }
+    .nav-links a:hover{color:var(--text);background:rgba(255,255,255,.06)}
+    .btn{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:10px 14px;border-radius:14px;
+      border:1px solid var(--line);
+      background: linear-gradient(135deg, rgba(53,198,255,.14), rgba(124,92,255,.12));
+      color:var(--text);font-weight:700;font-size:14px;
+      transition:.2s ease;
+    }
+    .btn:hover{transform:translateY(-1px);background: linear-gradient(135deg, rgba(53,198,255,.20), rgba(124,92,255,.18))}
+
+    /* Mobile menu */
+    .menu-btn{
+      display:none;
+      width:44px;height:44px;border-radius:14px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.05);
+      color:var(--text);
+    }
+    #menu{display:none}
+    @media (max-width: 860px){
+      .menu-btn{display:inline-grid;place-items:center}
+      .nav-links{display:none}
+      #menu:checked ~ .mobile{display:block}
+      .mobile{
+        display:none;
+        border-top:1px solid var(--line);
+        padding:10px 0 16px;
+      }
+      .mobile a{
+        display:block;
+        padding:12px 14px;border-radius:14px;
+        color:var(--muted);font-weight:700;
+        margin:6px 0;
+        background:rgba(255,255,255,.03);
+        border:1px solid rgba(255,255,255,.06);
+      }
+      .mobile a:hover{color:var(--text);background:rgba(255,255,255,.06)}
+    }
+
+    /* Hero */
+    .hero{padding:56px 0 26px}
+    .hero-grid{
+      display:grid;gap:18px;align-items:stretch;
+      grid-template-columns: 1.25fr .75fr;
+    }
+    .hero h1{font-size:42px;line-height:1.15;letter-spacing:-.6px}
+    .hero p{color:var(--muted);margin-top:10px}
+    .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+    .chip{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:8px 12px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.04);
+      color:var(--text);font-weight:700;font-size:13px;
+    }
+    .hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+    .muted-card h3{font-size:16px}
+    .muted-card p{color:var(--muted);font-size:14px;margin-top:8px}
+    .stat{display:flex;align-items:center;gap:10px;margin-top:12px}
+    .dot{
+      width:10px;height:10px;border-radius:50%;
+      background:var(--brand);
+      box-shadow: 0 0 0 6px rgba(53,198,255,.14);
+    }
+
+    @media (max-width: 860px){
+      .hero-grid{grid-template-columns:1fr}
+      .hero h1{font-size:34px}
+    }
+
+    /* Headings */
+    .title{
+      display:flex;align-items:flex-end;justify-content:space-between;gap:12px;
+      margin-bottom:14px;
+    }
+    .title h2{font-size:26px}
+    .title p{color:var(--muted);font-weight:600}
+
+    /* Timeline */
+    .timeline{display:grid;gap:14px}
+    .t-item{display:flex;gap:12px}
+    .t-line{
+      width:12px;display:flex;justify-content:center;
+      position:relative;
+    }
+    .t-line:before{
+      content:"";position:absolute;top:0;bottom:0;width:2px;
+      background:rgba(255,255,255,.10);
+    }
+    .t-bullet{
+      width:12px;height:12px;border-radius:50%;
+      background:linear-gradient(135deg,var(--brand),var(--brand2));
+      margin-top:4px;
+      box-shadow:0 0 0 7px rgba(124,92,255,.12);
+      position:relative;z-index:2;
+    }
+    .t-content h3{font-size:16px}
+    .t-meta{color:var(--muted);font-weight:700;font-size:13px;margin-top:4px}
+    .t-desc{color:var(--muted);font-size:14px;margin-top:6px}
+
+    /* Publications */
+    .pubs{grid-template-columns: repeat(12, 1fr)}
+    .pub{grid-column: span 6}
+    .tag{
+      display:inline-flex;align-items:center;gap:8px;
+      font-size:12px;font-weight:800;
+      color:rgba(255,255,255,.92);
+      background:rgba(53,198,255,.12);
+      border:1px solid rgba(53,198,255,.22);
+      padding:6px 10px;border-radius:999px;
+      margin-bottom:10px;
+    }
+    .pub h3{font-size:16px}
+    .pub p{color:var(--muted);font-size:14px;margin-top:8px}
+
+    @media (max-width: 860px){
+      .pub{grid-column: span 12}
+    }
+
+    /* Skills */
+    .skills{display:flex;flex-wrap:wrap;gap:10px}
+    .skill{
+      padding:9px 12px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.04);
+      font-weight:800;font-size:13px;color:rgba(255,255,255,.92);
+    }
+
+    /* Contact */
+    .contact-grid{grid-template-columns: 1fr 1fr}
+    .field{
+      display:flex;gap:12px;align-items:flex-start;
+      padding:14px;border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.03);
+    }
+    .icon{
+      width:42px;height:42px;border-radius:14px;
+      display:grid;place-items:center;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.10);
+      flex:0 0 auto;
+    }
+    .field p{color:var(--muted);font-size:14px;margin-top:4px}
+    @media (max-width: 860px){
+      .contact-grid{grid-template-columns:1fr}
+    }
+
+    /* Footer */
+    footer{
+      padding:26px 0 40px;
+      border-top:1px solid var(--line);
+      color:var(--muted);
+    }
+    .foot{
+      display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between;
+    }
+    .social a{
+      display:inline-grid;place-items:center;
+      width:42px;height:42px;border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.03);
+      margin-left:8px;
+      transition:.2s ease;
+    }
+    .social a:hover{transform:translateY(-1px);background:rgba(255,255,255,.06);color:var(--text)}
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <div class="nav">
+    <div class="wrap nav-inner">
+      <div class="brand">
+        <div class="brand-badge"><i class="fa-solid fa-graduation-cap"></i></div>
+        <span>AFSHA BIBI</span>
+      </div>
+
+      <input id="menu" type="checkbox" />
+      <label class="menu-btn" for="menu" aria-label="Open menu">
+        <i class="fa-solid fa-bars"></i>
+      </label>
+
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#teaching">Teaching</a>
+        <a href="#research">Research</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+        <a class="btn" href="#contact"><i class="fa-solid fa-paper-plane"></i>Hire / Connect</a>
+      </div>
+    </div>
+
+    <div class="wrap mobile">
+      <a href="#about" onclick="document.getElementById('menu').checked=false">About</a>
+      <a href="#teaching" onclick="document.getElementById('menu').checked=false">Teaching</a>
+      <a href="#research" onclick="document.getElementById('menu').checked=false">Research</a>
+      <a href="#skills" onclick="document.getElementById('menu').checked=false">Skills</a>
+      <a href="#contact" onclick="document.getElementById('menu').checked=false">Contact</a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="card pad">
+        <h1>Computer Technology Instructor & MSCS Researcher</h1>
+        <p>
+          I teach practical IT skills and work on energy-efficient communication for IoT networks
+          (S-MAC & GA-SMAC duty-cycle optimization).
+        </p>
+
+        <div class="chips">
+          <span class="chip"><i class="fa-solid fa-location-dot"></i> Swat, Pakistan</span>
+          <span class="chip"><i class="fa-solid fa-school"></i> GTVC Madyan</span>
+          <span class="chip"><i class="fa-solid fa-network-wired"></i> IoT & WSN</span>
+        </div>
+
+        <div class="hero-actions">
+          <!-- Replace with your real links -->
+          <a class="btn" href="https://afshabibiits.blogspot.com/" target="_blank" rel="noopener">
+            <i class="fa-solid fa-link"></i> Blog
+          </a>
+          <a class="btn" href="#contact">
+            <i class="fa-solid fa-envelope"></i> Contact
+          </a>
+        </div>
+      </div>
+
+      <div class="card pad muted-card">
+        <h3>Quick Summary</h3>
+        <p>
+          Teaching background + MS research focus. Portfolio is designed to be simple, readable,
+          and recruiter-friendly (no exaggerated claims).
+        </p>
+
+        <div class="stat"><span class="dot"></span><div>
+          <strong>Teaching:</strong> Computer fundamentals, MS Office, IT skills
+        </div></div>
+
+        <div class="stat"><span class="dot"></span><div>
+          <strong>Research:</strong> Energy, delay, throughput evaluation (GA-SMAC vs S-MAC)
+        </div></div>
+
+        <div class="stat"><span class="dot"></span><div>
+          <strong>Tools:</strong> Python, MATLAB, documentation & reporting
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="section">
+    <div class="wrap">
+      <div class="title">
+        <h2>About</h2>
+        <p>Short, clear, and real.</p>
+      </div>
+
+      <div class="card pad">
+        <p style="color:var(--muted);font-weight:600">
+          I am a Computer Technology Instructor at Government Technical & Vocational Centre (GTVC), Madyan.
+          Previously, I worked as a Computer Instructor at Pakistan International School Riyadh (PISR), Saudi Arabia.
+          Alongside teaching, I am an MS Computer Science researcher focusing on IoT networks and energy-efficient MAC protocols,
+          especially S-MAC and GA-SMAC duty-cycle optimization.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEACHING -->
+  <section id="teaching" class="section">
+    <div class="wrap">
+      <div class="title">
+        <h2>Teaching Experience</h2>
+        <p>What I teach & deliver.</p>
+      </div>
+
+      <div class="card pad timeline">
+        <div class="t-item">
+          <div class="t-line"><div class="t-bullet"></div></div>
+          <div class="t-content">
+            <h3>Computer Technology Instructor — GTVC Madyan</h3>
+            <div class="t-meta">2021 – Present • Swat, Pakistan</div>
+            <div class="t-desc">
+              Lesson planning, hands-on labs, assessments, and student support in IT skills and computer fundamentals.
+            </div>
+          </div>
+        </div>
+
+        <div class="t-item">
+          <div class="t-line"><div class="t-bullet"></div></div>
+          <div class="t-content">
+            <h3>Computer Instructor — Pakistan International School Riyadh (PISR)</h3>
+            <div class="t-meta">Past Role • Riyadh, Saudi Arabia</div>
+            <div class="t-desc">
+              Taught computer basics and digital literacy through practical classroom activities.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESEARCH -->
+  <section id="research" class="section">
+    <div class="wrap">
+      <div class="title">
+        <h2>Research</h2>
+        <p>Replace placeholders with your real work.</p>
+      </div>
+
+      <div class="grid pubs">
+        <!-- Replace these cards with YOUR real items -->
+        <div class="card pad pub">
+          <div class="tag"><i class="fa-solid fa-flask"></i> MS Thesis Focus</div>
+          <h3>GA-SMAC Duty-Cycle Optimization for IoT Networks</h3>
+          <p>
+            Simulation-based comparison of GA-SMAC vs traditional S-MAC using metrics:
+            energy consumption, delay, throughput, and efficiency under varying node counts and traffic.
+          </p>
+        </div>
+
+        <div class="card pad pub">
+          <div class="tag"><i class="fa-solid fa-chart-line"></i> Results & Analysis</div>
+          <h3>Performance Evaluation (Energy / Delay / Throughput)</h3>
+          <p>
+            Documenting experiment settings, graphs, and interpretation in a structured way for academic reporting.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="section">
+    <div class="wrap">
+      <div class="title">
+        <h2>Skills</h2>
+        <p>Only what you really use.</p>
+      </div>
+
+      <div class="card pad">
+        <div class="skills">
+          <span class="skill">Teaching & Lab Management</span>
+          <span class="skill">Computer Fundamentals</span>
+          <span class="skill">MS Office</span>
+          <span class="skill">IoT & WSN Concepts</span>
+          <span class="skill">S-MAC / GA-SMAC</span>
+          <span class="skill">Genetic Algorithms (GA)</span>
+          <span class="skill">Python (Simulation)</span>
+          <span class="skill">MATLAB (Analysis)</span>
+          <span class="skill">Research Writing</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section">
+    <div class="wrap">
+      <div class="title">
+        <h2>Contact</h2>
+        <p>Use professional links.</p>
+      </div>
+
+      <div class="grid contact-grid">
+        <div class="card pad field">
+          <div class="icon"><i class="fa-solid fa-envelope"></i></div>
+          <div>
+            <strong>Email</strong>
+            <p><a href="mailto:afshabibiits@gmail.com">afshabibiits@gmail.com</a></p>
+          </div>
+        </div>
+
+        <div class="card pad field">
+          <div class="icon"><i class="fa-brands fa-linkedin"></i></div>
+          <div>
+            <strong>LinkedIn</strong>
+            <p><a href="#" target="_blank" rel="noopener">Add your LinkedIn profile link here</a></p>
+          </div>
+        </div>
+
+        <div class="card pad field">
+          <div class="icon"><i class="fa-solid fa-link"></i></div>
+          <div>
+            <strong>Blog</strong>
+            <p><a href="https://afshabibiits.blogspot.com/" target="_blank" rel="noopener">afshabibiits.blogspot.com</a></p>
+          </div>
+        </div>
+
+        <!-- Phone is optional; keeping it public can increase spam -->
+        <div class="card pad field">
+          <div class="icon"><i class="fa-solid fa-phone"></i></div>
+          <div>
+            <strong>Phone (optional)</strong>
+            <p>Keep private if you want</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap foot">
+      <div>© 2025 Afsha Bibi • Portfolio</div>
+      <div class="social">
+        <a href="mailto:afshabibiits@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
