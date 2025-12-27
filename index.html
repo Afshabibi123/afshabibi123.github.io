@@ -1,494 +1,531 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Afsha Bibi | Portfolio</title>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <meta name="description" content="Afsha Bibi — Computer Instructor at GTVC Madyan | MSCS Researcher (IoT, Energy-Efficient MAC)" />
 
   <style>
     :root{
-      --bg:#0b1220;
-      --card:#0f1a2f;
-      --muted:#9fb0d0;
-      --text:#eaf0ff;
-      --brand:#35c6ff;
-      --brand2:#7c5cff;
-      --line:rgba(255,255,255,.10);
-      --shadow:0 12px 30px rgba(0,0,0,.35);
-      --radius:18px;
-      --max:1100px;
+      --bg: #0b0f19;
+      --card: rgba(255,255,255,.06);
+      --card2: rgba(255,255,255,.08);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.65);
+      --line: rgba(255,255,255,.14);
+      --brand: #7c3aed;   /* violet */
+      --brand2:#22c55e;   /* green */
+      --brand3:#38bdf8;   /* sky */
+      --shadow: 0 18px 60px rgba(0,0,0,.35);
+      --radius: 18px;
+      --max: 1100px;
     }
 
-    *{box-sizing:border-box;margin:0;padding:0}
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
     body{
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      color:var(--text);
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji";
       background:
-        radial-gradient(1200px 500px at 10% 10%, rgba(53,198,255,.25), transparent 60%),
-        radial-gradient(900px 500px at 90% 20%, rgba(124,92,255,.22), transparent 60%),
-        linear-gradient(180deg, #070b14 0%, #0b1220 55%, #070b14 100%);
-      line-height:1.6;
+        radial-gradient(900px 500px at 15% 15%, rgba(124,58,237,.30), transparent 55%),
+        radial-gradient(800px 500px at 85% 20%, rgba(56,189,248,.22), transparent 55%),
+        radial-gradient(700px 480px at 70% 85%, rgba(34,197,94,.18), transparent 55%),
+        var(--bg);
+      color:var(--text);
+      overflow-x:hidden;
     }
-    a{color:inherit;text-decoration:none}
-    img{max-width:100%;display:block}
 
-    /* Layout helpers */
-    .wrap{max-width:var(--max);margin:0 auto;padding:0 16px}
-    .section{padding:64px 0}
-    .grid{display:grid;gap:18px}
-    .card{
-      background:rgba(15,26,47,.78);
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-      backdrop-filter: blur(10px);
-    }
-    .pad{padding:20px}
+    a{ color:inherit; text-decoration:none; }
+    .wrap{ max-width:var(--max); margin:0 auto; padding: 22px 18px 60px; }
 
-    /* Navbar */
-    .nav{
-      position:sticky;top:0;z-index:999;
-      background:rgba(7,11,20,.65);
+    /* Topbar */
+    .topbar{
+      position: sticky; top:0; z-index:50;
       backdrop-filter: blur(12px);
+      background: rgba(11,15,25,.55);
       border-bottom:1px solid var(--line);
     }
-    .nav-inner{
-      display:flex;align-items:center;justify-content:space-between;
-      height:64px;
+    .topbar .row{
+      max-width:var(--max); margin:0 auto;
+      padding: 14px 18px;
+      display:flex; align-items:center; justify-content:space-between;
+      gap: 12px;
     }
     .brand{
-      display:flex;gap:10px;align-items:center;font-weight:800;letter-spacing:.4px
+      display:flex; align-items:center; gap:10px; font-weight:700;
+      letter-spacing:.2px;
     }
-    .brand-badge{
-      width:36px;height:36px;border-radius:12px;
-      background: linear-gradient(135deg,var(--brand),var(--brand2));
-      display:grid;place-items:center;
-      box-shadow: 0 10px 20px rgba(53,198,255,.18);
-      flex:0 0 auto;
+    .dot{
+      width:12px; height:12px; border-radius:999px;
+      background: linear-gradient(135deg, var(--brand), var(--brand3));
+      box-shadow: 0 0 18px rgba(124,58,237,.55);
     }
-    .brand-badge i{font-size:16px}
-    .nav-links{display:flex;gap:18px;align-items:center}
-    .nav-links a{
-      color:var(--muted);font-weight:600;font-size:14px;
-      padding:10px 10px;border-radius:12px;
-      transition:.2s ease;
+    .nav{
+      display:flex; align-items:center; gap: 18px;
+      font-size: 14px; color: var(--muted);
     }
-    .nav-links a:hover{color:var(--text);background:rgba(255,255,255,.06)}
-    .btn{
-      display:inline-flex;align-items:center;gap:10px;
-      padding:10px 14px;border-radius:14px;
-      border:1px solid var(--line);
-      background: linear-gradient(135deg, rgba(53,198,255,.14), rgba(124,92,255,.12));
-      color:var(--text);font-weight:700;font-size:14px;
-      transition:.2s ease;
-    }
-    .btn:hover{transform:translateY(-1px);background: linear-gradient(135deg, rgba(53,198,255,.20), rgba(124,92,255,.18))}
+    .nav a{ padding:8px 10px; border-radius:12px; }
+    .nav a:hover{ background: rgba(255,255,255,.06); color: var(--text); }
 
-    /* Mobile menu */
-    .menu-btn{
-      display:none;
-      width:44px;height:44px;border-radius:14px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.05);
-      color:var(--text);
+    .cta{
+      display:flex; align-items:center; gap:10px;
     }
-    #menu{display:none}
-    @media (max-width: 860px){
-      .menu-btn{display:inline-grid;place-items:center}
-      .nav-links{display:none}
-      #menu:checked ~ .mobile{display:block}
-      .mobile{
-        display:none;
-        border-top:1px solid var(--line);
-        padding:10px 0 16px;
-      }
-      .mobile a{
-        display:block;
-        padding:12px 14px;border-radius:14px;
-        color:var(--muted);font-weight:700;
-        margin:6px 0;
-        background:rgba(255,255,255,.03);
-        border:1px solid rgba(255,255,255,.06);
-      }
-      .mobile a:hover{color:var(--text);background:rgba(255,255,255,.06)}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:10px;
+      padding:10px 14px;
+      border-radius: 14px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.05);
+      color: var(--text);
+      font-weight: 600;
+      font-size: 14px;
+      box-shadow: none;
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+      cursor:pointer;
+      user-select:none;
+    }
+    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.22); }
+    .btn.primary{
+      border: 1px solid rgba(124,58,237,.45);
+      background: linear-gradient(135deg, rgba(124,58,237,.95), rgba(56,189,248,.55));
     }
 
     /* Hero */
-    .hero{padding:56px 0 26px}
+    .hero{ padding: 56px 0 26px; }
     .hero-grid{
-      display:grid;gap:18px;align-items:stretch;
-      grid-template-columns: 1.25fr .75fr;
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 18px;
+      align-items: stretch;
     }
-    .hero h1{font-size:42px;line-height:1.15;letter-spacing:-.6px}
-    .hero p{color:var(--muted);margin-top:10px}
-    .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
-    .chip{
-      display:inline-flex;align-items:center;gap:8px;
-      padding:8px 12px;border-radius:999px;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.04);
-      color:var(--text);font-weight:700;font-size:13px;
+    .panel{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.05);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
     }
-    .hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
-    .muted-card h3{font-size:16px}
-    .muted-card p{color:var(--muted);font-size:14px;margin-top:8px}
-    .stat{display:flex;align-items:center;gap:10px;margin-top:12px}
-    .dot{
-      width:10px;height:10px;border-radius:50%;
-      background:var(--brand);
-      box-shadow: 0 0 0 6px rgba(53,198,255,.14);
+    .hero-left{ padding: 28px; position:relative; overflow:hidden; }
+    .glow{
+      position:absolute; inset:-120px -140px auto auto;
+      width: 320px; height:320px; border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, rgba(124,58,237,.35), transparent 60%);
+      filter: blur(6px);
+      pointer-events:none;
+    }
+    .kicker{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:8px 12px;
+      border-radius: 999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
+      font-size: 13px;
+      width: fit-content;
+    }
+    .kicker b{ color: var(--text); }
+    h1{
+      margin: 14px 0 10px;
+      font-size: 44px;
+      line-height: 1.05;
+      letter-spacing: -.6px;
+    }
+    .sub{
+      margin:0;
+      color: var(--muted);
+      font-size: 15.5px;
+      line-height: 1.7;
+      max-width: 60ch;
+    }
+    .hero-actions{ display:flex; gap: 10px; margin-top: 18px; flex-wrap:wrap; }
+    .mini{
+      margin-top: 16px;
+      display:flex; gap: 12px; flex-wrap:wrap;
+      color: var(--muted); font-size: 13px;
+    }
+    .mini span{
+      display:inline-flex; gap:8px; align-items:center;
+      padding:8px 10px; border-radius: 14px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
     }
 
-    @media (max-width: 860px){
-      .hero-grid{grid-template-columns:1fr}
-      .hero h1{font-size:34px}
+    .hero-right{ padding: 18px; display:flex; flex-direction:column; gap: 12px; }
+    .card{
+      border:1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(255,255,255,.04);
+      padding: 14px;
+    }
+    .card h3{ margin: 0 0 6px; font-size: 14px; }
+    .card p{ margin: 0; color: var(--muted); font-size: 13.5px; line-height:1.6; }
+    .badge{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:7px 10px;
+      border-radius: 999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
+      font-size: 12.5px;
+      width: fit-content;
+      margin-bottom: 10px;
+    }
+    .badge i{
+      width: 8px; height:8px; border-radius:999px; background: var(--brand2);
+      box-shadow: 0 0 14px rgba(34,197,94,.45);
+      display:inline-block;
     }
 
-    /* Headings */
-    .title{
-      display:flex;align-items:flex-end;justify-content:space-between;gap:12px;
-      margin-bottom:14px;
+    /* Sections */
+    section{ padding: 26px 0; }
+    .section-title{
+      display:flex; align-items:flex-end; justify-content:space-between;
+      gap: 12px;
+      margin-bottom: 12px;
     }
-    .title h2{font-size:26px}
-    .title p{color:var(--muted);font-weight:600}
+    .section-title h2{
+      margin: 0;
+      font-size: 20px;
+      letter-spacing: -.2px;
+    }
+    .section-title p{
+      margin:0; color: var(--muted); font-size: 13.5px;
+    }
+    .grid-3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .grid-2{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
 
-    /* Timeline */
-    .timeline{display:grid;gap:14px}
-    .t-item{display:flex;gap:12px}
-    .t-line{
-      width:12px;display:flex;justify-content:center;
-      position:relative;
+    .item{
+      padding: 16px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
     }
-    .t-line:before{
-      content:"";position:absolute;top:0;bottom:0;width:2px;
-      background:rgba(255,255,255,.10);
+    .item:hover{ transform: translateY(-2px); background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.22); }
+    .item .top{
+      display:flex; align-items:center; justify-content:space-between; gap: 12px;
+      margin-bottom: 8px;
     }
-    .t-bullet{
-      width:12px;height:12px;border-radius:50%;
-      background:linear-gradient(135deg,var(--brand),var(--brand2));
-      margin-top:4px;
-      box-shadow:0 0 0 7px rgba(124,92,255,.12);
-      position:relative;z-index:2;
+    .pill{
+      font-size: 12px;
+      color: var(--muted);
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      padding: 6px 10px;
+      border-radius: 999px;
+      white-space: nowrap;
     }
-    .t-content h3{font-size:16px}
-    .t-meta{color:var(--muted);font-weight:700;font-size:13px;margin-top:4px}
-    .t-desc{color:var(--muted);font-size:14px;margin-top:6px}
+    .item h3{ margin:0; font-size: 15px; }
+    .item p{ margin: 8px 0 0; color: var(--muted); font-size: 13.5px; line-height: 1.65; }
 
-    /* Publications */
-    .pubs{grid-template-columns: repeat(12, 1fr)}
-    .pub{grid-column: span 6}
+    .tags{ display:flex; flex-wrap:wrap; gap: 8px; margin-top: 12px; }
     .tag{
-      display:inline-flex;align-items:center;gap:8px;
-      font-size:12px;font-weight:800;
-      color:rgba(255,255,255,.92);
-      background:rgba(53,198,255,.12);
-      border:1px solid rgba(53,198,255,.22);
-      padding:6px 10px;border-radius:999px;
-      margin-bottom:10px;
-    }
-    .pub h3{font-size:16px}
-    .pub p{color:var(--muted);font-size:14px;margin-top:8px}
-
-    @media (max-width: 860px){
-      .pub{grid-column: span 12}
-    }
-
-    /* Skills */
-    .skills{display:flex;flex-wrap:wrap;gap:10px}
-    .skill{
-      padding:9px 12px;border-radius:999px;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.04);
-      font-weight:800;font-size:13px;color:rgba(255,255,255,.92);
-    }
-
-    /* Contact */
-    .contact-grid{grid-template-columns: 1fr 1fr}
-    .field{
-      display:flex;gap:12px;align-items:flex-start;
-      padding:14px;border-radius:16px;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.03);
-    }
-    .icon{
-      width:42px;height:42px;border-radius:14px;
-      display:grid;place-items:center;
-      background:rgba(255,255,255,.06);
-      border:1px solid rgba(255,255,255,.10);
-      flex:0 0 auto;
-    }
-    .field p{color:var(--muted);font-size:14px;margin-top:4px}
-    @media (max-width: 860px){
-      .contact-grid{grid-template-columns:1fr}
+      font-size: 12.5px;
+      color: rgba(255,255,255,.78);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      padding: 7px 10px;
+      border-radius: 999px;
     }
 
     /* Footer */
     footer{
-      padding:26px 0 40px;
-      border-top:1px solid var(--line);
-      color:var(--muted);
+      margin-top: 24px;
+      border-top: 1px solid var(--line);
+      padding: 18px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      display:flex; align-items:center; justify-content:space-between;
+      gap: 12px;
+      flex-wrap:wrap;
     }
-    .foot{
-      display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between;
+    .links{ display:flex; gap: 10px; flex-wrap:wrap; }
+    .links a{
+      padding: 8px 10px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.03);
     }
-    .social a{
-      display:inline-grid;place-items:center;
-      width:42px;height:42px;border-radius:14px;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.03);
-      margin-left:8px;
-      transition:.2s ease;
+    .links a:hover{ background: rgba(255,255,255,.06); color: var(--text); }
+
+    /* Responsive */
+    @media (max-width: 920px){
+      .hero-grid{ grid-template-columns: 1fr; }
+      h1{ font-size: 38px; }
     }
-    .social a:hover{transform:translateY(-1px);background:rgba(255,255,255,.06);color:var(--text)}
+    @media (max-width: 720px){
+      .nav{ display:none; } /* clean mobile like modern portfolios */
+      .grid-3{ grid-template-columns: 1fr; }
+      .grid-2{ grid-template-columns: 1fr; }
+      h1{ font-size: 34px; }
+      .hero-left{ padding: 22px; }
+    }
   </style>
 </head>
 
 <body>
-
-  <!-- NAV -->
-  <div class="nav">
-    <div class="wrap nav-inner">
+  <!-- Topbar -->
+  <div class="topbar">
+    <div class="row">
       <div class="brand">
-        <div class="brand-badge"><i class="fa-solid fa-graduation-cap"></i></div>
-        <span>AFSHA BIBI</span>
+        <span class="dot"></span>
+        <span>Afsha Bibi</span>
       </div>
 
-      <input id="menu" type="checkbox" />
-      <label class="menu-btn" for="menu" aria-label="Open menu">
-        <i class="fa-solid fa-bars"></i>
-      </label>
-
-      <div class="nav-links">
+      <nav class="nav" aria-label="Primary">
         <a href="#about">About</a>
-        <a href="#teaching">Teaching</a>
+        <a href="#experience">Experience</a>
         <a href="#research">Research</a>
         <a href="#skills">Skills</a>
         <a href="#contact">Contact</a>
-        <a class="btn" href="#contact"><i class="fa-solid fa-paper-plane"></i>Hire / Connect</a>
-      </div>
-    </div>
+      </nav>
 
-    <div class="wrap mobile">
-      <a href="#about" onclick="document.getElementById('menu').checked=false">About</a>
-      <a href="#teaching" onclick="document.getElementById('menu').checked=false">Teaching</a>
-      <a href="#research" onclick="document.getElementById('menu').checked=false">Research</a>
-      <a href="#skills" onclick="document.getElementById('menu').checked=false">Skills</a>
-      <a href="#contact" onclick="document.getElementById('menu').checked=false">Contact</a>
+      <div class="cta">
+        <!-- Replace # with your LinkedIn later -->
+        <a class="btn" href="#" target="_blank" rel="noopener">LinkedIn</a>
+        <!-- Put your CV file link here (see steps below) -->
+        <a class="btn primary" href="cv.pdf" target="_blank" rel="noopener">Download CV</a>
+      </div>
     </div>
   </div>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="wrap hero-grid">
-      <div class="card pad">
-        <h1>Computer Technology Instructor & MSCS Researcher</h1>
-        <p>
-          I teach practical IT skills and work on energy-efficient communication for IoT networks
-          (S-MAC & GA-SMAC duty-cycle optimization).
-        </p>
+  <main class="wrap">
+    <!-- Hero -->
+    <header class="hero" id="top">
+      <div class="hero-grid">
+        <div class="panel hero-left">
+          <div class="glow"></div>
+          <div class="kicker">👩‍💻 <b>Computer Instructor</b> • GTVC Madyan</div>
+          <h1>MSCS Researcher<br/>IoT & Energy-Efficient Networks</h1>
+          <p class="sub">
+            I teach hands-on computer skills and work on research around duty-cycle optimization and energy-efficient MAC protocols
+            for IoT/WSN networks (S-MAC / GA-S-MAC).
+          </p>
 
-        <div class="chips">
-          <span class="chip"><i class="fa-solid fa-location-dot"></i> Swat, Pakistan</span>
-          <span class="chip"><i class="fa-solid fa-school"></i> GTVC Madyan</span>
-          <span class="chip"><i class="fa-solid fa-network-wired"></i> IoT & WSN</span>
-        </div>
+          <div class="hero-actions">
+            <a class="btn primary" href="#contact">Contact</a>
+            <a class="btn" href="#experience">See Experience</a>
+            <a class="btn" href="#research">Research</a>
+          </div>
 
-        <div class="hero-actions">
-          <!-- Replace with your real links -->
-          <a class="btn" href="https://afshabibiits.blogspot.com/" target="_blank" rel="noopener">
-            <i class="fa-solid fa-link"></i> Blog
-          </a>
-          <a class="btn" href="#contact">
-            <i class="fa-solid fa-envelope"></i> Contact
-          </a>
-        </div>
-      </div>
-
-      <div class="card pad muted-card">
-        <h3>Quick Summary</h3>
-        <p>
-          Teaching background + MS research focus. Portfolio is designed to be simple, readable,
-          and recruiter-friendly (no exaggerated claims).
-        </p>
-
-        <div class="stat"><span class="dot"></span><div>
-          <strong>Teaching:</strong> Computer fundamentals, MS Office, IT skills
-        </div></div>
-
-        <div class="stat"><span class="dot"></span><div>
-          <strong>Research:</strong> Energy, delay, throughput evaluation (GA-SMAC vs S-MAC)
-        </div></div>
-
-        <div class="stat"><span class="dot"></span><div>
-          <strong>Tools:</strong> Python, MATLAB, documentation & reporting
-        </div></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section id="about" class="section">
-    <div class="wrap">
-      <div class="title">
-        <h2>About</h2>
-        <p>Short, clear, and real.</p>
-      </div>
-
-      <div class="card pad">
-        <p style="color:var(--muted);font-weight:600">
-          I am a Computer Technology Instructor at Government Technical & Vocational Centre (GTVC), Madyan.
-          Previously, I worked as a Computer Instructor at Pakistan International School Riyadh (PISR), Saudi Arabia.
-          Alongside teaching, I am an MS Computer Science researcher focusing on IoT networks and energy-efficient MAC protocols,
-          especially S-MAC and GA-SMAC duty-cycle optimization.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- TEACHING -->
-  <section id="teaching" class="section">
-    <div class="wrap">
-      <div class="title">
-        <h2>Teaching Experience</h2>
-        <p>What I teach & deliver.</p>
-      </div>
-
-      <div class="card pad timeline">
-        <div class="t-item">
-          <div class="t-line"><div class="t-bullet"></div></div>
-          <div class="t-content">
-            <h3>Computer Technology Instructor — GTVC Madyan</h3>
-            <div class="t-meta">2021 – Present • Swat, Pakistan</div>
-            <div class="t-desc">
-              Lesson planning, hands-on labs, assessments, and student support in IT skills and computer fundamentals.
-            </div>
+          <div class="mini">
+            <span>📍 Swat, Pakistan</span>
+            <span>🎓 MSCS (In progress)</span>
+            <span>🧩 Python • MATLAB • IoT</span>
           </div>
         </div>
 
-        <div class="t-item">
-          <div class="t-line"><div class="t-bullet"></div></div>
-          <div class="t-content">
-            <h3>Computer Instructor — Pakistan International School Riyadh (PISR)</h3>
-            <div class="t-meta">Past Role • Riyadh, Saudi Arabia</div>
-            <div class="t-desc">
-              Taught computer basics and digital literacy through practical classroom activities.
-            </div>
+        <aside class="panel hero-right">
+          <div class="card">
+            <div class="badge"><i></i> Available for: Teaching • Academic Projects</div>
+            <h3>Focus</h3>
+            <p>Energy-efficient communication, duty cycle optimization, and practical computer training.</p>
           </div>
+
+          <div class="card">
+            <h3>Quick Links</h3>
+            <p>
+              • Blog: <a href="https://afshabibiits.blogspot.com/" target="_blank" rel="noopener" style="text-decoration:underline;">afshabibiits.blogspot.com</a><br/>
+              • Email: <a href="mailto:afshabibiits@gmail.com" style="text-decoration:underline;">afshabibiits@gmail.com</a>
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Highlight</h3>
+            <p>Building a clear academic portfolio + CV for LinkedIn and job applications.</p>
+          </div>
+        </aside>
+      </div>
+    </header>
+
+    <!-- About -->
+    <section id="about">
+      <div class="section-title">
+        <div>
+          <h2>About</h2>
+          <p>Short, recruiter-friendly (CV jaisa long nahi).</p>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- RESEARCH -->
-  <section id="research" class="section">
-    <div class="wrap">
-      <div class="title">
-        <h2>Research</h2>
-        <p>Replace placeholders with your real work.</p>
-      </div>
-
-      <div class="grid pubs">
-        <!-- Replace these cards with YOUR real items -->
-        <div class="card pad pub">
-          <div class="tag"><i class="fa-solid fa-flask"></i> MS Thesis Focus</div>
-          <h3>GA-SMAC Duty-Cycle Optimization for IoT Networks</h3>
+      <div class="grid-2">
+        <div class="item">
+          <div class="top">
+            <h3>Who I am</h3>
+            <span class="pill">Instructor • Researcher</span>
+          </div>
           <p>
-            Simulation-based comparison of GA-SMAC vs traditional S-MAC using metrics:
-            energy consumption, delay, throughput, and efficiency under varying node counts and traffic.
+            I am a Computer Technology Instructor at Government Technical & Vocational Centre (GTVC), Madyan.
+            Alongside teaching, I’m pursuing MSCS research in IoT networks with a focus on energy saving and duty-cycle MAC protocols.
           </p>
         </div>
 
-        <div class="card pad pub">
-          <div class="tag"><i class="fa-solid fa-chart-line"></i> Results & Analysis</div>
-          <h3>Performance Evaluation (Energy / Delay / Throughput)</h3>
+        <div class="item">
+          <div class="top">
+            <h3>What I do</h3>
+            <span class="pill">IoT • MAC • GA</span>
+          </div>
           <p>
-            Documenting experiment settings, graphs, and interpretation in a structured way for academic reporting.
+            I work on simulations and analysis (Python/MATLAB) to compare traditional S-MAC with GA-based duty cycle optimization,
+            aiming to improve battery life, delay, and throughput in IoT/WSN environments.
           </p>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- SKILLS -->
-  <section id="skills" class="section">
-    <div class="wrap">
-      <div class="title">
-        <h2>Skills</h2>
-        <p>Only what you really use.</p>
-      </div>
-
-      <div class="card pad">
-        <div class="skills">
-          <span class="skill">Teaching & Lab Management</span>
-          <span class="skill">Computer Fundamentals</span>
-          <span class="skill">MS Office</span>
-          <span class="skill">IoT & WSN Concepts</span>
-          <span class="skill">S-MAC / GA-SMAC</span>
-          <span class="skill">Genetic Algorithms (GA)</span>
-          <span class="skill">Python (Simulation)</span>
-          <span class="skill">MATLAB (Analysis)</span>
-          <span class="skill">Research Writing</span>
+    <!-- Experience -->
+    <section id="experience">
+      <div class="section-title">
+        <div>
+          <h2>Experience</h2>
+          <p>Clean cards (timeline clutter nahi).</p>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- CONTACT -->
-  <section id="contact" class="section">
-    <div class="wrap">
-      <div class="title">
-        <h2>Contact</h2>
-        <p>Use professional links.</p>
-      </div>
-
-      <div class="grid contact-grid">
-        <div class="card pad field">
-          <div class="icon"><i class="fa-solid fa-envelope"></i></div>
-          <div>
-            <strong>Email</strong>
-            <p><a href="mailto:afshabibiits@gmail.com">afshabibiits@gmail.com</a></p>
+      <div class="grid-2">
+        <div class="item">
+          <div class="top">
+            <h3>Computer Technology Instructor</h3>
+            <span class="pill">2021 — Present</span>
           </div>
+          <p>
+            Government Technical & Vocational Centre (GTVC), Madyan — teaching MS Office, computer fundamentals,
+            data entry, and practical lab-based training with assessments and lesson plans.
+          </p>
         </div>
 
-        <div class="card pad field">
-          <div class="icon"><i class="fa-brands fa-linkedin"></i></div>
-          <div>
-            <strong>LinkedIn</strong>
-            <p><a href="#" target="_blank" rel="noopener">Add your LinkedIn profile link here</a></p>
+        <div class="item">
+          <div class="top">
+            <h3>System Administrator</h3>
+            <span class="pill">2021</span>
           </div>
-        </div>
-
-        <div class="card pad field">
-          <div class="icon"><i class="fa-solid fa-link"></i></div>
-          <div>
-            <strong>Blog</strong>
-            <p><a href="https://afshabibiits.blogspot.com/" target="_blank" rel="noopener">afshabibiits.blogspot.com</a></p>
-          </div>
-        </div>
-
-        <!-- Phone is optional; keeping it public can increase spam -->
-        <div class="card pad field">
-          <div class="icon"><i class="fa-solid fa-phone"></i></div>
-          <div>
-            <strong>Phone (optional)</strong>
-            <p>Keep private if you want</p>
-          </div>
+          <p>
+            Ample The Consultants, Peshawar — system support, basic networking, troubleshooting, and office IT tasks.
+          </p>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <footer>
-    <div class="wrap foot">
-      <div>© 2025 Afsha Bibi • Portfolio</div>
-      <div class="social">
-        <a href="mailto:afshabibiits@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
-        <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-        <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+    <!-- Research -->
+    <section id="research">
+      <div class="section-title">
+        <div>
+          <h2>Research</h2>
+          <p>Sirf top highlights. Details CV/PDF mein.</p>
+        </div>
       </div>
-    </div>
-  </footer>
 
+      <div class="grid-3">
+        <div class="item">
+          <div class="top">
+            <h3>GA-S-MAC vs S-MAC</h3>
+            <span class="pill">IoT / WSN</span>
+          </div>
+          <p>
+            Duty cycle optimization using Genetic Algorithms to improve energy efficiency and traffic management.
+          </p>
+        </div>
+
+        <div class="item">
+          <div class="top">
+            <h3>Simulation & Analysis</h3>
+            <span class="pill">Python • MATLAB</span>
+          </div>
+          <p>
+            Performance metrics: energy consumption, delay, throughput, and packet loss across different network sizes.
+          </p>
+        </div>
+
+        <div class="item">
+          <div class="top">
+            <h3>Academic Writing</h3>
+            <span class="pill">Thesis</span>
+          </div>
+          <p>
+            Structured methodology, flowcharts, and presentation-ready documentation for supervisor review.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills">
+      <div class="section-title">
+        <div>
+          <h2>Skills</h2>
+          <p>Short tags only (clean look).</p>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="tags">
+          <span class="tag">Python</span>
+          <span class="tag">MATLAB</span>
+          <span class="tag">IoT Networks</span>
+          <span class="tag">WSN</span>
+          <span class="tag">MAC Protocols</span>
+          <span class="tag">S-MAC / GA-S-MAC</span>
+          <span class="tag">MS Office</span>
+          <span class="tag">Teaching & Training</span>
+          <span class="tag">Documentation</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <div class="section-title">
+        <div>
+          <h2>Contact</h2>
+          <p>Email best (professional).</p>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="item">
+          <div class="top">
+            <h3>Email</h3>
+            <span class="pill">Fast reply</span>
+          </div>
+          <p>
+            <a href="mailto:afshabibiits@gmail.com" style="text-decoration:underline;">afshabibiits@gmail.com</a>
+          </p>
+        </div>
+
+        <div class="item">
+          <div class="top">
+            <h3>Portfolio / Blog</h3>
+            <span class="pill">Work samples</span>
+          </div>
+          <p>
+            <a href="https://afshabibiits.blogspot.com/" target="_blank" rel="noopener" style="text-decoration:underline;">
+              afshabibiits.blogspot.com
+            </a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div>© <span id="y"></span> Afsha Bibi</div>
+      <div class="links">
+        <a href="#top">Back to top</a>
+        <a href="mailto:afshabibiits@gmail.com">Email</a>
+        <a href="cv.pdf" target="_blank" rel="noopener">CV</a>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
